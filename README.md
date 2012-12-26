@@ -2,12 +2,14 @@ DaySet
 ======
 
 With this gem you can generate a set of any number of days for a month
-or for a year, is useful for example when you have to divide a month
+or year, is useful for example when you have to divide a month
 in a fixed number of days, to create table partitions based on a date:
 
 
-Generating set of 2 days January of 2012
+Generating sets of 2 days January of 2012
 --------------------------------------
+
+     gem install dayset
 
      require 'day_set'
 	 
@@ -15,7 +17,7 @@ Generating set of 2 days January of 2012
 	 
 	 #=> [#<Date: 2012-01-01 ((2455928j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-02 ((2455929j,0s,0n),+0s,2299161j)>]
  
-Generating set of 6 days January of 2012
+Generating sets of 6 days January of 2012
 --------------------------------------
 
      require 'day_set'

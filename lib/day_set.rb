@@ -14,6 +14,21 @@ class DaySet
     sets
   end
 
+  def self.gen_for_year(year, options)
+    sets = []
+
+    (1..12).each do |month|
+      date = Date.new year, month
+      gen(options.merge(:date => date)).each do |s|
+        sets << s
+      end
+    end
+
+    sets
+  end
+
+  private
+
   def self.gen_range(date)
     last_day   = last_day_of_the_month date.year, date.month
     low_limit  = Date.new date.year, date.month, 1
@@ -29,19 +44,5 @@ class DaySet
     sets
   end
 
-  def self.gen_for_year(year, options)
-    sets = []
-
-    (1..12).each do |month|
-      date = Date.new year, month
-
-      gen(options.merge(:date => date)).each do |s|
-        sets << s
-      end
-
-    end
-
-    sets
-  end
 
 end
