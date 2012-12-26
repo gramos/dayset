@@ -1,17 +1,26 @@
 require 'date'
-class DaySet
+class DaySet < Array
 
-  def self.last_day_of_the_month(yyyy, mm)
-    d = Date.new yyyy, mm
+  attr_reader :sets
+
+  def last_day_of_the_month
+    d = Date.new @date.year, @date.month
     d += 42
     last_d = Date.new(d.year, d.month) - 1
     last_d.day
   end
 
+  def initialize(args)
+    @date         = args[:date]
+    @group_number = args[:group_number]
+    @move_residue = args[:move_residue]
+    @sets          = gen_range!.each_slice(@group_number).to_a
+    move_residue!(@group_number / 2) if @move_residue
+  end
+
   def self.gen(args)
-    sets = gen_range(args[:date]).each_slice(args[:group_number]).to_a
-    move_residue(sets, args[:group_number] / 2) if args[:move_residue]
-    sets
+    date_set = self.new args
+    date_set.sets
   end
 
   def self.gen_for_year(year, options)
@@ -29,19 +38,19 @@ class DaySet
 
   private
 
-  def self.gen_range(date)
-    last_day   = last_day_of_the_month date.year, date.month
-    low_limit  = Date.new date.year, date.month, 1
-    high_limit = Date.new date.year, date.month, last_day
+  def gen_range!
+    last_day   = last_day_of_the_month
+    low_limit  = Date.new @date.year, @date.month, 1
+    high_limit = Date.new @date.year, @date.month, last_day
     low_limit..high_limit
   end
 
-  def self.move_residue(sets, limit)
-    if sets.last.size < limit
-      last = sets.pop
-      sets.last << last.first
+  def move_residue!(limit)
+    if @sets.last.size < limit
+      last = @sets.pop
+      @sets.last << last.first
     end
-    sets
+
   end
 
 
