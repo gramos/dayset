@@ -14,8 +14,8 @@ class DaySet < Array
     @date         = args[:date]
     @group_number = args[:group_number]
     @move_residue = args[:move_residue]
-    @sets          = gen_range!.each_slice(@group_number).to_a
-    move_residue!(@group_number / 2) if @move_residue
+    @sets         = gen_range!.each_slice(@group_number).to_a
+    move_residue! if @move_residue
   end
 
   def self.gen_for_year(year, options)
@@ -40,8 +40,8 @@ class DaySet < Array
     low_limit..high_limit
   end
 
-  def move_residue!(limit)
-    if @sets.last.size < limit
+  def move_residue!
+    if @sets.last.size < (@group_number / 2)
       last = @sets.pop
       @sets.last << last.first
     end
