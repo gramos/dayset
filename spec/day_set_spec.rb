@@ -21,3 +21,17 @@ describe "DaySet group in set of 7 days" do
   end
 
 end
+
+describe "DaySet group in set of 6 days" do
+
+  before do
+    @date = Date.new(2012, 1)
+    @args = { :date => @date, :group_number => 6,
+              :move_residue => true }
+  end
+
+  it "should move the residue to the last week" do
+    expected = (Date.new(2012, 1, 25)..Date.new(2012, 1, 31)).to_a
+    DaySet.gen(@args).last.must_equal expected
+  end
+end
