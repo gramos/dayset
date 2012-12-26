@@ -1,3 +1,4 @@
+require 'date'
 class DaySet
 
   def self.last_day_of_the_month(yyyy, mm)
