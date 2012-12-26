@@ -21,12 +21,17 @@ Generating set of 6 days January of 2012
      require 'day_set'
 	 
 	 DaySet.gen(:date => Date.new(2012, 1), :group_number => 6).last
-	 
+		 
+	 # The last set has only one day because January has 31 days 
+	 # 31 % 6 is 1, I have named this set "residue set"
+		 
      => [#<Date: 2012-01-31 ((2455958j,0s,0n),+0s,2299161j)>]
      
 	 # It generates set of 6 days but if there is a 'residue set' with
-     # a number fo days lower than group_number / 2 it will be moved to
+     # a number of days lower than group_number / 2 it will be moved to
 	 # the previous set.
+	 
+	 # Take a look that  Date: 2012-01-31 was moved.
 
      DaySet.gen(:date => Date.new(2012, 1), :group_number => 6, 
                 :move_residue => true).last
