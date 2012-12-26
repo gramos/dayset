@@ -7,7 +7,7 @@ class DaySet
     last_d.day
   end
 
-  def self.get(args)
+  def self.gen(args)
     last_day = last_day_of_the_month args[:date].year, args[:date].month
     low_limit  = Date.new(args[:date].year, args[:date].month, 1)
     high_limit = Date.new(args[:date].year, args[:date].month, last_day)
