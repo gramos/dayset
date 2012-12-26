@@ -24,7 +24,11 @@ Generating set of 6 days January of 2012
 	 
      => [#<Date: 2012-01-31 ((2455958j,0s,0n),+0s,2299161j)>]
      
-	 DaySet.gen(:date => Date.new(2012, 1), :group_number => 6, 
+	 # It generates set of 6 days but if there is a 'residue set' with
+     # a number fo days lower than group_number / 2 it will be moved to
+	 # the previous set.
+
+     DaySet.gen(:date => Date.new(2012, 1), :group_number => 6, 
                 :move_residue => true).last
 	 
 	 => [#<Date: 2012-01-25 ((2455952j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-26 ((2455953j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-27 ((2455954j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-28 ((2455955j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-29 ((2455956j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-30 ((2455957j,0s,0n),+0s,2299161j)>, #<Date: 2012-01-31 ((2455958j,0s,0n),+0s,2299161j)>]
@@ -34,7 +38,7 @@ Generating labels of 6 days for year 2012
 --------------------------------------
 
      # it will generate an array of  labels with this format:
-	 #  YYYY-MM--first_day_of_the_set-last_day_of_the_set 
+	 #  YYYY-MM--(first_day_of_the_set)-(last_day_of_the_set)
 
      @args = { :group_number => 6, :move_residue => true }
  
