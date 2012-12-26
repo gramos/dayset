@@ -31,11 +31,14 @@ class DaySet
 
   def self.gen_for_year(year, options)
     sets = []
+
     (1..12).each do |month|
       date = Date.new year, month
+
       gen(options.merge(:date => date)).each do |s|
         sets << s
       end
+
     end
 
     sets

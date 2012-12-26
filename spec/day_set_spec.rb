@@ -12,11 +12,13 @@ describe "DaySet group in set of 7 days" do
 
   it "should get first set of 7 days" do
     expected = (Date.new(2012, 1, 1)..Date.new(2012, 1, 7)).to_a
+
     DaySet.gen(@args)[0].must_equal expected
   end
 
   it "should get the second set of 7 days" do
     expected = (Date.new(2012, 1, 8)..Date.new(2012, 1, 14)).to_a
+
     DaySet.gen(@args)[1].must_equal expected
   end
 
@@ -32,6 +34,7 @@ describe "DaySet group in set of 6 days" do
 
   it "should move the residue to the previous week" do
     expected = (Date.new(2012, 1, 25)..Date.new(2012, 1, 31)).to_a
+
     DaySet.gen(@args).last.must_equal expected
   end
 
