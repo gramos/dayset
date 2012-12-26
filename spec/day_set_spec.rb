@@ -30,8 +30,14 @@ describe "DaySet group in set of 6 days" do
               :move_residue => true }
   end
 
-  it "should move the residue to the last week" do
+  it "should move the residue to the previous week" do
     expected = (Date.new(2012, 1, 25)..Date.new(2012, 1, 31)).to_a
     DaySet.gen(@args).last.must_equal expected
+  end
+
+  it "should generate set of days for a year" do
+    @args.delete(:date)
+    expected = (Date.new(2012, 12, 25)..Date.new(2012, 12, 31)).to_a
+    DaySet.gen_for_year(2012, @args).last.must_equal expected
   end
 end
