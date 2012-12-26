@@ -18,17 +18,12 @@ class DaySet < Array
     move_residue!(@group_number / 2) if @move_residue
   end
 
-  def self.gen(args)
-    date_set = self.new args
-    date_set.sets
-  end
-
   def self.gen_for_year(year, options)
     sets = []
 
     (1..12).each do |month|
       date = Date.new year, month
-      gen(options.merge(:date => date)).each do |s|
+      self.new(options.merge(:date => date)).sets.each do |s|
         sets << s
       end
     end
