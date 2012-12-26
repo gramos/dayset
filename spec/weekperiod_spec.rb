@@ -3,14 +3,14 @@ require 'minitest/autorun'
 require 'week_period'
 require 'date'
 
-describe WeekPeriod do
+describe DaySet do
 
   it "should get periods grouped in set of 7 days" do
     @date = Date.new(2012, 1)
     @expected = (Date.new(2012, 1, 1)..Date.new(2012, 1, 7)).to_a
     @args = { :date => @date, :group_number => 7 }
 
-    WeekPeriod.get(@args)[0].must_equal @expected
+    DaySet.get(@args)[0].must_equal @expected
   end
 
   # it "should get the second set of 7 days" do

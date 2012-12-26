@@ -1,4 +1,4 @@
-class WeekPeriod
+class DaySet
 
   def self.last_day_of_the_month(yyyy, mm)
     d = Date.new yyyy, mm
